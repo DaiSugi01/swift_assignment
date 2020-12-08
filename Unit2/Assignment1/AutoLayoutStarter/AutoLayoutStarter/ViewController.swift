@@ -44,8 +44,7 @@ class ViewController: UIViewController {
         butt.addTarget(self, action: #selector(landscapeTapped), for: .touchUpInside)
         return butt
     }()
-    
-
+        
     var widthAnchor: NSLayoutConstraint?
     var heightAnchor: NSLayoutConstraint?
     
@@ -53,6 +52,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(mainView)
+        createPurpleBox()
         setupLayout()
     }
     
@@ -79,6 +79,19 @@ class ViewController: UIViewController {
             buttStackView.heightAnchor.constraint(equalToConstant: 50),
             buttStackView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
+    }
+    
+    func createPurpleBox() {
+        let purpleRec = UIView()
+        mainView.addSubview(purpleRec)
+
+        purpleRec.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
+        purpleRec.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        purpleRec.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -30).isActive = true
+        purpleRec.trailingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        purpleRec.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+        purpleRec.translatesAutoresizingMaskIntoConstraints = false
+        purpleRec.backgroundColor = .purple
     }
     
     @objc private func squareTapped() {
