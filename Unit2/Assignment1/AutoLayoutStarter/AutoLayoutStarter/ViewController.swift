@@ -18,6 +18,69 @@ class ViewController: UIViewController {
         return main
     }()
     
+    /* top view */
+    let topStackView: UIStackView = {
+        let redContainer = UIStackView()
+        redContainer.translatesAutoresizingMaskIntoConstraints = false
+        redContainer.backgroundColor = .red
+        return redContainer
+    }()
+    
+    /* child left box of top stack view container */
+    let topOrangeLeftBox: UIView = {
+        let orangeBox = UIView()
+        orangeBox.translatesAutoresizingMaskIntoConstraints = false
+        orangeBox.backgroundColor = .orange
+        return orangeBox
+    }()
+    
+    /* child right box of top stack view container */
+    let topOrangeRightBox: UIView = {
+        let orangeBox = UIView()
+        orangeBox.translatesAutoresizingMaskIntoConstraints = false
+        orangeBox.backgroundColor = .orange
+        return orangeBox
+    }()
+    
+    /* middle view */
+    let middleView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
+    /* child top box of middle stack view container */
+    let blueTopBox: UIView = {
+        let blueRec = UIView()
+        blueRec.translatesAutoresizingMaskIntoConstraints = false
+        blueRec.backgroundColor = .blue
+        return blueRec
+    }()
+    
+    /* child middle box of middle stack view container */
+    let blueMiddleBox: UIView = {
+        let blueRec = UIView()
+        blueRec.translatesAutoresizingMaskIntoConstraints = false
+        blueRec.backgroundColor = .blue
+        return blueRec
+    }()
+    
+    /* child bottom box of middle stack view container */
+    let blueBottomBox: UIView = {
+        let blueRec = UIView()
+        blueRec.translatesAutoresizingMaskIntoConstraints = false
+        blueRec.backgroundColor = .blue
+        return blueRec
+    }()
+    
+    /* bottom view */
+    let buttomPurpleBox: UIView = {
+        let purpleBox = UIView()
+        purpleBox.translatesAutoresizingMaskIntoConstraints = false
+        purpleBox.backgroundColor = .purple
+        return purpleBox
+    }()
+    
     let squareButton: UIButton = {
         let butt = UIButton(type: .system)
         butt.setTitle("Square", for: .normal)
@@ -52,8 +115,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(mainView)
-        createPurpleBox()
-        createTopRedBoxes()
+//        createTopRedBoxes()
+//        createMiddleBoxes()
+//        createPurpleBox()
+        createContents()
         setupLayout()
     }
     
@@ -82,13 +147,95 @@ class ViewController: UIViewController {
         ])
     }
     
+    func createContents() {
+        /* create top view */
+        let leftBox = topOrangeLeftBox
+        let rightBox = topOrangeRightBox
+        let container = topStackView
+        
+        // set container properties
+        container.axis = .horizontal
+        container.alignment = .center
+        container.distribution = .fill
+        container.spacing = 5
+        container.isLayoutMarginsRelativeArrangement = true
+        container.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+        mainView.addSubview(container)
+        
+        // set container constraints
+        container.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
+        container.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        container.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        container.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
+
+        // set child box to container
+        container.addArrangedSubview(leftBox)
+        container.addArrangedSubview(rightBox)
+        
+        // set left box constraints
+        leftBox.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.6).isActive = true
+        leftBox.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.5).isActive = true
+        leftBox.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10).isActive = true
+        
+        // set right box constraints
+        rightBox.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.6).isActive = true
+        rightBox.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.3).isActive = true
+        rightBox.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10).isActive = true
+
+
+        /* creata bottom view */
+        let purpleBox = buttomPurpleBox
+        mainView.addSubview(purpleBox)
+
+        purpleBox.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
+        purpleBox.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        purpleBox.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -30).isActive = true
+        purpleBox.trailingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        
+
+        /* create middle view */
+        let blueTopRec = blueTopBox
+        let blueMiddleRec = blueMiddleBox
+        let blueBottomRec = blueBottomBox
+
+        // add children to container
+        let middleStackView = middleView
+        middleView.addArrangedSubview(blueTopBox)
+        middleView.addArrangedSubview(blueMiddleRec)
+        middleView.addArrangedSubview(blueBottomRec)
+        
+        // set container properties
+        middleStackView.axis = .vertical
+        middleStackView.alignment = .center
+        middleStackView.distribution = .equalSpacing
+        middleView.spacing = 20
+        mainView.addSubview(middleStackView)
+
+        // set container constraint
+        middleStackView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+        middleStackView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.5).isActive = true
+        middleStackView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.6).isActive = true
+        middleStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 30).isActive = true
+
+        // set children constraint
+        let blueBoxes: [UIView] = [blueTopRec, blueMiddleRec, blueBottomRec]
+        for blueBox in blueBoxes {
+            blueBox.widthAnchor.constraint(equalToConstant: 70).isActive = true
+            blueBox.heightAnchor.constraint(equalToConstant: 70).isActive = true
+            blueBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
+        }
+
+    }
+    
     func createTopRedBoxes() {
         let leftBox = UIView()
         leftBox.translatesAutoresizingMaskIntoConstraints = false
-        
+        leftBox.backgroundColor = .orange
+
         let rightBox = UIView()
         rightBox.translatesAutoresizingMaskIntoConstraints = false
-        
+        rightBox.backgroundColor = .orange
+
         let stackView = UIStackView(arrangedSubviews: [leftBox, rightBox])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = .red
@@ -105,43 +252,28 @@ class ViewController: UIViewController {
         stackView.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         stackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
         
-        leftBox.backgroundColor = .orange
         leftBox.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6).isActive = true
         leftBox.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.5).isActive = true
         leftBox.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 10).isActive = true
         
-        rightBox.backgroundColor = .orange
         rightBox.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6).isActive = true
         rightBox.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.3).isActive = true
         rightBox.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -10).isActive = true
 
     }
     
-    func createPurpleBox() {
-        let purpleRec = UIView()
-        mainView.addSubview(purpleRec)
-
-        purpleRec.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
-        purpleRec.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        purpleRec.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -30).isActive = true
-        purpleRec.trailingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
-        purpleRec.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
-        purpleRec.translatesAutoresizingMaskIntoConstraints = false
-        purpleRec.backgroundColor = .purple
-    }
-    
     @objc private func squareTapped() {
-        view.layoutIfNeeded()
-        UIView.animate(withDuration: 2.0) {
-            self.widthAnchor?.isActive = false
-            self.widthAnchor? = self.mainView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
-            self.widthAnchor?.isActive = true
-            
-            self.heightAnchor?.isActive = false
-            self.heightAnchor? = self.mainView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
-            self.heightAnchor?.isActive = true
-            self.view.layoutIfNeeded()
-        }
+      view.layoutIfNeeded()
+      UIView.animate(withDuration: 2.0) {
+        self.widthAnchor?.isActive = false
+        self.widthAnchor? = self.mainView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
+        self.widthAnchor?.isActive = true
+        
+        self.heightAnchor?.isActive = false
+        self.heightAnchor? = self.mainView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9)
+        self.heightAnchor?.isActive = true
+        self.view.layoutIfNeeded()
+      }
     }
     
     @objc private func portraitTapped() {
