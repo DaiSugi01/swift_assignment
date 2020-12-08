@@ -53,6 +53,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(mainView)
         createPurpleBox()
+        createTopRedBoxes()
         setupLayout()
     }
     
@@ -81,12 +82,47 @@ class ViewController: UIViewController {
         ])
     }
     
+    func createTopRedBoxes() {
+        let leftBox = UIView()
+        leftBox.translatesAutoresizingMaskIntoConstraints = false
+        
+        let rightBox = UIView()
+        rightBox.translatesAutoresizingMaskIntoConstraints = false
+        
+        let stackView = UIStackView(arrangedSubviews: [leftBox, rightBox])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.backgroundColor = .red
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+        mainView.addSubview(stackView)
+        
+        stackView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        stackView.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
+        
+        leftBox.backgroundColor = .orange
+        leftBox.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6).isActive = true
+        leftBox.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.5).isActive = true
+        leftBox.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 10).isActive = true
+        
+        rightBox.backgroundColor = .orange
+        rightBox.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.6).isActive = true
+        rightBox.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.3).isActive = true
+        rightBox.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -10).isActive = true
+
+    }
+    
     func createPurpleBox() {
         let purpleRec = UIView()
         mainView.addSubview(purpleRec)
 
         purpleRec.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
-        purpleRec.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        purpleRec.heightAnchor.constraint(equalToConstant: 60).isActive = true
         purpleRec.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -30).isActive = true
         purpleRec.trailingAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
         purpleRec.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
