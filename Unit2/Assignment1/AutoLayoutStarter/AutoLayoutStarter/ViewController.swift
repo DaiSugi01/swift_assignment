@@ -115,10 +115,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(mainView)
-//        createTopRedBoxes()
-//        createMiddleBoxes()
-//        createPurpleBox()
-        createContents()
         setupLayout()
     }
     
@@ -130,6 +126,8 @@ class ViewController: UIViewController {
         
         heightAnchor = mainView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7, constant: 0)
         heightAnchor?.isActive = true
+        
+        createContents()
         
         let buttStackView = UIStackView(arrangedSubviews: [
                                             squareButton, portraitButton, landScapeButton])
