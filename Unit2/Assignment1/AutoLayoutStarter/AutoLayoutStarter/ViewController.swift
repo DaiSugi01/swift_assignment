@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     /* middle view */
-    let middleView: UIStackView = {
+    let middleStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -150,29 +150,29 @@ class ViewController: UIViewController {
         /* create top view */
         let leftBox = orangeBox
         let rightBox = orangeBox
-        let container = topStackView
+        let topContainer = topStackView
         
-        mainView.addSubview(container)
+        mainView.addSubview(topContainer)
 
         // set child box to container
-        container.addArrangedSubview(leftBox)
-        container.addArrangedSubview(rightBox)
+        topContainer.addArrangedSubview(leftBox)
+        topContainer.addArrangedSubview(rightBox)
         
         // set left box constraints
-        leftBox.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.6).isActive = true
-        leftBox.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.5).isActive = true
-        leftBox.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10).isActive = true
+        leftBox.heightAnchor.constraint(equalTo: topContainer.heightAnchor, multiplier: 0.6).isActive = true
+        leftBox.widthAnchor.constraint(equalTo: topContainer.widthAnchor, multiplier: 0.5).isActive = true
+        leftBox.leadingAnchor.constraint(equalTo: topContainer.leadingAnchor, constant: 10).isActive = true
         
         // set right box constraints
-        rightBox.heightAnchor.constraint(equalTo: container.heightAnchor, multiplier: 0.6).isActive = true
-        rightBox.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.3).isActive = true
-        rightBox.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10).isActive = true
+        rightBox.heightAnchor.constraint(equalTo: topContainer.heightAnchor, multiplier: 0.6).isActive = true
+        rightBox.widthAnchor.constraint(equalTo: topContainer.widthAnchor, multiplier: 0.3).isActive = true
+        rightBox.trailingAnchor.constraint(equalTo: topContainer.trailingAnchor, constant: -10).isActive = true
 
         // set container constraints
-        container.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        container.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-        container.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
+        topContainer.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
+        topContainer.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        topContainer.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        topContainer.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
 
         
         /* creata bottom view */
@@ -192,23 +192,23 @@ class ViewController: UIViewController {
         let blueBottomBox = blueBox
 
         // add children to container
-        let middleStackView = middleView
-        middleView.addArrangedSubview(blueTopBox)
-        middleView.addArrangedSubview(blueMiddleBox)
-        middleView.addArrangedSubview(blueBottomBox)
+        let middleContainer = middleStackView
+        middleContainer.addArrangedSubview(blueTopBox)
+        middleContainer.addArrangedSubview(blueMiddleBox)
+        middleContainer.addArrangedSubview(blueBottomBox)
         
-        mainView.addSubview(middleStackView)
+        mainView.addSubview(middleContainer)
 
         // set container constraint
-        middleStackView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
-        middleStackView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.5).isActive = true
-        middleStackView.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.6).isActive = true
-        middleStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 30).isActive = true
+        middleContainer.centerXAnchor.constraint(equalTo: mainView.centerXAnchor).isActive = true
+        middleContainer.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.5).isActive = true
+        middleContainer.heightAnchor.constraint(equalTo: mainView.heightAnchor, multiplier: 0.6).isActive = true
+        middleContainer.topAnchor.constraint(equalTo: topContainer.bottomAnchor, constant: 30).isActive = true
 
         // set children constraint
-        blueTopBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
-        blueMiddleBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
-        blueBottomBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
+        blueTopBox.centerXAnchor.constraint(equalTo: middleContainer.centerXAnchor).isActive = true
+        blueMiddleBox.centerXAnchor.constraint(equalTo: middleContainer.centerXAnchor).isActive = true
+        blueBottomBox.centerXAnchor.constraint(equalTo: middleContainer.centerXAnchor).isActive = true
 
     }
     
