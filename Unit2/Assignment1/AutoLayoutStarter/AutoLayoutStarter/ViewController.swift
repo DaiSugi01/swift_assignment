@@ -61,17 +61,17 @@ class ViewController: UIViewController {
 
     /* blue box of middle stack view container */
     var blueBox: UIView {
-        let blueRec = UIView()
-        blueRec.translatesAutoresizingMaskIntoConstraints = false
+        let blueBox = UIView()
+        blueBox.translatesAutoresizingMaskIntoConstraints = false
 
         // set propaties
-        blueRec.backgroundColor = .blue
+        blueBox.backgroundColor = .blue
 
         // set constraint
-        blueRec.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        blueRec.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        blueBox.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        blueBox.heightAnchor.constraint(equalToConstant: 70).isActive = true
         
-        return blueRec
+        return blueBox
     }
 
     /* bottom view */
