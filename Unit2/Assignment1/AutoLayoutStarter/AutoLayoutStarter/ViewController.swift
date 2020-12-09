@@ -22,57 +22,58 @@ class ViewController: UIViewController {
     let topStackView: UIStackView = {
         let redContainer = UIStackView()
         redContainer.translatesAutoresizingMaskIntoConstraints = false
+
+        // set container properties
         redContainer.backgroundColor = .red
+        redContainer.axis = .horizontal
+        redContainer.alignment = .center
+        redContainer.distribution = .fill
+        redContainer.spacing = 5
+        redContainer.isLayoutMarginsRelativeArrangement = true
+        redContainer.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+
         return redContainer
     }()
     
-    /* child left box of top stack view container */
-    let topOrangeLeftBox: UIView = {
+    /* orange box of top stack view container */
+    var orangeBox: UIView {
         let orangeBox = UIView()
         orangeBox.translatesAutoresizingMaskIntoConstraints = false
+
+        // set propaties
         orangeBox.backgroundColor = .orange
         return orangeBox
-    }()
-    
-    /* child right box of top stack view container */
-    let topOrangeRightBox: UIView = {
-        let orangeBox = UIView()
-        orangeBox.translatesAutoresizingMaskIntoConstraints = false
-        orangeBox.backgroundColor = .orange
-        return orangeBox
-    }()
+    }
     
     /* middle view */
     let middleView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        // set container properties
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 20
+
         return stackView
     }()
 
-    /* child top box of middle stack view container */
-    let blueTopBox: UIView = {
+    /* blue box of middle stack view container */
+    var blueBox: UIView {
         let blueRec = UIView()
         blueRec.translatesAutoresizingMaskIntoConstraints = false
+
+        // set propaties
         blueRec.backgroundColor = .blue
+
+        // set constraint
+        blueRec.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        blueRec.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
         return blueRec
-    }()
-    
-    /* child middle box of middle stack view container */
-    let blueMiddleBox: UIView = {
-        let blueRec = UIView()
-        blueRec.translatesAutoresizingMaskIntoConstraints = false
-        blueRec.backgroundColor = .blue
-        return blueRec
-    }()
-    
-    /* child bottom box of middle stack view container */
-    let blueBottomBox: UIView = {
-        let blueRec = UIView()
-        blueRec.translatesAutoresizingMaskIntoConstraints = false
-        blueRec.backgroundColor = .blue
-        return blueRec
-    }()
-    
+    }
+
     /* bottom view */
     let buttomPurpleBox: UIView = {
         let purpleBox = UIView()
@@ -147,24 +148,11 @@ class ViewController: UIViewController {
     
     func createContents() {
         /* create top view */
-        let leftBox = topOrangeLeftBox
-        let rightBox = topOrangeRightBox
+        let leftBox = orangeBox
+        let rightBox = orangeBox
         let container = topStackView
         
-        // set container properties
-        container.axis = .horizontal
-        container.alignment = .center
-        container.distribution = .fill
-        container.spacing = 5
-        container.isLayoutMarginsRelativeArrangement = true
-        container.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
         mainView.addSubview(container)
-        
-        // set container constraints
-        container.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
-        container.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        container.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-        container.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
 
         // set child box to container
         container.addArrangedSubview(leftBox)
@@ -180,11 +168,18 @@ class ViewController: UIViewController {
         rightBox.widthAnchor.constraint(equalTo: container.widthAnchor, multiplier: 0.3).isActive = true
         rightBox.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10).isActive = true
 
+        // set container constraints
+        container.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
+        container.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        container.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        container.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -30).isActive = true
 
+        
         /* creata bottom view */
         let purpleBox = buttomPurpleBox
         mainView.addSubview(purpleBox)
 
+        // set constraints
         purpleBox.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.6).isActive = true
         purpleBox.heightAnchor.constraint(equalToConstant: 60).isActive = true
         purpleBox.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -30).isActive = true
@@ -192,21 +187,16 @@ class ViewController: UIViewController {
         
 
         /* create middle view */
-        let blueTopRec = blueTopBox
-        let blueMiddleRec = blueMiddleBox
-        let blueBottomRec = blueBottomBox
+        let blueTopBox = blueBox
+        let blueMiddleBox = blueBox
+        let blueBottomBox = blueBox
 
         // add children to container
         let middleStackView = middleView
         middleView.addArrangedSubview(blueTopBox)
-        middleView.addArrangedSubview(blueMiddleRec)
-        middleView.addArrangedSubview(blueBottomRec)
+        middleView.addArrangedSubview(blueMiddleBox)
+        middleView.addArrangedSubview(blueBottomBox)
         
-        // set container properties
-        middleStackView.axis = .vertical
-        middleStackView.alignment = .center
-        middleStackView.distribution = .equalSpacing
-        middleView.spacing = 20
         mainView.addSubview(middleStackView)
 
         // set container constraint
@@ -216,12 +206,9 @@ class ViewController: UIViewController {
         middleStackView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 30).isActive = true
 
         // set children constraint
-        let blueBoxes: [UIView] = [blueTopRec, blueMiddleRec, blueBottomRec]
-        for blueBox in blueBoxes {
-            blueBox.widthAnchor.constraint(equalToConstant: 70).isActive = true
-            blueBox.heightAnchor.constraint(equalToConstant: 70).isActive = true
-            blueBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
-        }
+        blueTopBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
+        blueMiddleBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
+        blueBottomBox.centerXAnchor.constraint(equalTo: middleView.centerXAnchor).isActive = true
 
     }
     
