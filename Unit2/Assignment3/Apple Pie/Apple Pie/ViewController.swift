@@ -23,8 +23,7 @@ class ViewController: UIViewController {
     var player2: Player = Player(name: "Player 2")
     var currentGame: Game!
 
-    var listOfWords = ["abc", "abc"]
-//    var listOfWords = ["abc", "apple", "buccaneer", "swift", "glorious", "incandescent", "bug", "program"]
+    var listOfWords = ["abc", "apple", "buccaneer", "swift", "glorious", "incandescent", "bug", "program"]
     let incorrectMovesAllowed = 7
     var gameRound = 1 {
         didSet {
@@ -45,7 +44,6 @@ class ViewController: UIViewController {
         let letter = Character(letterString.lowercased())
         
         if currentGame.isPplayerGuessedCorrect(letter: letter) {
-//            createDialogMessage(messageType: .correct)
             currentGame.playerTurn ? player1.getPoint() : player2.getPoint()
         } else {
             createDialogMessage(messageType: .wrong)
@@ -145,7 +143,7 @@ class ViewController: UIViewController {
         switch messageType {
         case .wrong:
             dialogMessage.title = "Worng word"
-            dialogMessage.message = "Woops. It seeme like a wrong word."
+            dialogMessage.message = "Woops. It seems like a wrong word."
             let wrong = UIAlertAction(title: "Next Player", style: .default, handler: nil)
             dialogMessage.addAction(wrong)
         case .correct:
@@ -177,4 +175,3 @@ class ViewController: UIViewController {
         self.present(dialogMessage, animated: true, completion: nil)
     }
 }
-
