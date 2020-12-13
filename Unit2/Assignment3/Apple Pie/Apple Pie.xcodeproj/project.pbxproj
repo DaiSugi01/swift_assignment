@@ -15,6 +15,7 @@
 		0AE12C1E2584387800C06D40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AE12C1C2584387800C06D40 /* LaunchScreen.storyboard */; };
 		0AE12C292584533400C06D40 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE12C282584533400C06D40 /* Game.swift */; };
 		0AE12C2C2585126200C06D40 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE12C2B2585126200C06D40 /* Player.swift */; };
+		0AE12C2F2585443100C06D40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE12C2E2585443100C06D40 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0AE12C1F2584387800C06D40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AE12C282584533400C06D40 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		0AE12C2B2585126200C06D40 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0AE12C2E2585443100C06D40 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				0AE12C1C2584387800C06D40 /* LaunchScreen.storyboard */,
 				0AE12C1F2584387800C06D40 /* Info.plist */,
 				0AE12C2B2585126200C06D40 /* Player.swift */,
+				0AE12C2E2585443100C06D40 /* Message.swift */,
 			);
 			path = "Apple Pie";
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				0AE12C162584387600C06D40 /* ViewController.swift in Sources */,
 				0AE12C122584387600C06D40 /* AppDelegate.swift in Sources */,
 				0AE12C142584387600C06D40 /* SceneDelegate.swift in Sources */,
+				0AE12C2F2585443100C06D40 /* Message.swift in Sources */,
 				0AE12C2C2585126200C06D40 /* Player.swift in Sources */,
 				0AE12C292584533400C06D40 /* Game.swift in Sources */,
 			);

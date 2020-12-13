@@ -30,8 +30,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tree 0" translatesAutoresizingMaskIntoConstraints="NO" id="NR3-4o-uT1">
-                                        <rect key="frame" x="0.0" y="100" width="1366" height="591"/>
+                                        <rect key="frame" x="0.0" y="100" width="1366" height="541"/>
                                     </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your guess...." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QoB-IQ-roq">
+                                        <rect key="frame" x="0.0" y="641" width="1366" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Vnm-4C-bKO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="guessInputPrimaryActionTriggered:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Pxc-6d-0W6"/>
+                                        </connections>
+                                    </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SsU-qJ-nWk">
                                         <rect key="frame" x="0.0" y="691" width="1366" height="313"/>
                                         <subviews>
@@ -379,6 +390,10 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="QoB-IQ-roq" firstAttribute="leading" secondItem="GHb-7Z-30i" secondAttribute="leading" constant="300" id="m5i-ps-Q4N"/>
+                                    <constraint firstAttribute="trailing" secondItem="QoB-IQ-roq" secondAttribute="trailing" constant="300" id="tpt-GD-dAG"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -392,6 +407,7 @@
                     </view>
                     <connections>
                         <outlet property="correctWordLabel" destination="iYR-gD-34z" id="qdO-c2-4qv"/>
+                        <outlet property="guessInputField" destination="QoB-IQ-roq" id="RN8-Ea-B1G"/>
                         <outlet property="player1PointLabel" destination="wZh-xs-cgk" id="qgi-LZ-pxb"/>
                         <outlet property="player1ScoreLabel" destination="dBX-io-kaT" id="LCH-Tw-A8f"/>
                         <outlet property="player2PointLabel" destination="t1w-LY-C0X" id="Sg4-DM-h3U"/>

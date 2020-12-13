@@ -26,14 +26,22 @@ struct Game {
         return guessedWord
     }
     
+    mutating func guessedByWord(inputWord: String) -> Bool {
+        if inputWord != word {
+            incorrectMovesRemainning -= 1
+            return false
+        }
+        return true
+    }
+    
     mutating func isPplayerGuessedCorrect(letter: Character) -> Bool {
         guessedLetters.append(letter)
         if !word.contains(letter) {
             incorrectMovesRemainning -= 1
             return false
-        } else {
-            return true
         }
+
+        return true        
     }
     
     mutating func changePlayer() {

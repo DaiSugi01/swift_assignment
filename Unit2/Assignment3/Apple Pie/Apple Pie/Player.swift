@@ -8,6 +8,7 @@
 import Foundation
 
 struct Player {
+    var name: String
     var totalWins: Int = 0
     var totalLosses: Int = 0
     var point: Int = 0
