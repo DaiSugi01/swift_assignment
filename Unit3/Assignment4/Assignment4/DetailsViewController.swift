@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailsViewController: UIViewController, WeatherManagerDelegate {
-
+    
     let stackView: UIStackView = {
         let sv = UIStackView()
         sv.translatesAutoresizingMaskIntoConstraints = false
@@ -25,6 +25,7 @@ class DetailsViewController: UIViewController, WeatherManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         weatherManager.delegate = self
+        
         view.backgroundColor = .white
         view.addSubview(stackView)
         weatherManager.fetchWeather(cityName: city.name.lowercased())

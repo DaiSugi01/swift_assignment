@@ -8,14 +8,16 @@
 
 import UIKit
 
-class CityViewController: UIViewController {
+class CityViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
 
+    let animetor = Animator()
 	var city: City!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        navigationController?.delegate = self
 
+		view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 		let cityLabel = UILabel(frame: CGRect(x: view.bounds.width / 2 - 150, y: view.bounds.height / 2 - 200, width: 300, height: 50))
 		cityLabel.text = city.name
 		cityLabel.textAlignment = .center
@@ -31,10 +33,19 @@ class CityViewController: UIViewController {
 		view.addSubview(butt)
 	}
   
-  @objc func showWeatherDetails() {
-    let detailsVC = DetailsViewController()
-    detailsVC.city = city
-    navigationController?.pushViewController(detailsVC, animated: true)
-  }
-}
+    @objc func showWeatherDetails() {
+        let detailsVC = DetailsViewController()
+        detailsVC.city = city
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
 
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        animetor.popStyle = (operation == .pop)
+        return animetor
+    }
+}
