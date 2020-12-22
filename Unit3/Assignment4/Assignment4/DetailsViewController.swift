@@ -69,8 +69,8 @@ class DetailsViewController: UIViewController, WeatherManagerDelegate {
         return label
     }
     
-    func didUpdateWeather(weatherManager: WeatherManager, weather: WeatherModel) {
-        DispatchQueue.main.sync {
+    func didUpdateWeather(weather: WeatherModel) {
+        DispatchQueue.main.async {
             self.cityTemp.text = weather.tempString
             self.citySummary.text = weather.conditionName
         }
