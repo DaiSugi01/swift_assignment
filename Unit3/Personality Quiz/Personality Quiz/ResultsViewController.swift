@@ -35,5 +35,6 @@ class ResultsViewController: UIViewController {
         })
         
         let mostCommonAnswer = frequentAnswersSorted.first!.key
+        
     }
 }
