@@ -334,10 +334,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="v5H-Ob-SAu">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="uUw-it-tjt"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="uUw-it-tjt">
+                            <connections>
+                                <segue destination="wsj-4S-4hE" kind="unwind" unwindAction="unwindToQuizIntroductionWithSegue:" id="ogK-CH-lHh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="resultAnswerLabel" destination="8eZ-nt-WdJ" id="z5f-CR-GQd"/>
+                        <outlet property="resultDefinitionLabel" destination="gpr-jn-wOu" id="IQd-ch-Ya6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wm5-ed-RNh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="wsj-4S-4hE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2703.0769230769229" y="117.29857819905213"/>
         </scene>
