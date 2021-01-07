@@ -23,6 +23,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         setupButton()
         registerForKeyboardNotification()
         scrollView.delegate = self
+        scrollView.contentInset = .init(top: 120, left: 0, bottom: 0, right: 0)
     }
 
     private func setupButton() {
@@ -59,9 +60,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
 
         let keyboardFrame = keyboardFrameValue.cgRectValue
-        let keyboardHeight = keyboardFrame.height
-//        let keyboardHeight = keyboardFrame.size.height
-        print("keyboardHeight: \(keyboardHeight)")
+        let keyboardHeight = keyboardFrame.size.height
 
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
         scrollView.contentInset = insets
@@ -69,7 +68,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @objc func keyboardWillBeHidden(_ notification: NSNotification) {
-        let insets = UIEdgeInsets.zero
+        let insets = UIEdgeInsets(top: 120, left: 0, bottom: 0, right: 0)
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
     }
