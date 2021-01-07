@@ -57,7 +57,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     @objc func keyboardWasShown(_ notification: NSNotification) {
         
-        guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
+        guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 
         let keyboardFrame = keyboardFrameValue.cgRectValue
         let keyboardHeight = keyboardFrame.size.height
