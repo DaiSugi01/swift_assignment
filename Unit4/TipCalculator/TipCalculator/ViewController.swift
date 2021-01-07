@@ -11,7 +11,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var tipAmountLabel: UILabel!
-    @IBOutlet var tipPercentageTextField: UITextField!
+    @IBOutlet var billAmountTextField: UITextField!
     @IBOutlet var tipSlider: UISlider!
     @IBOutlet var tipPercentageLabel: UILabel!
     @IBOutlet var calculateButton: UIButton!
@@ -40,13 +40,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
         
     private func updateAmount() {
-        guard let amount = Double(tipPercentageTextField.text!) else { return }
+        guard let amount = Double(billAmountTextField.text!) else { return }
         let totalAmount = amount * (1 + Double(tipValue) / 100.0)
         tipAmountLabel.text = "$ \(String(format: "%.2f", totalAmount))"
     }
         
     private func checkTF() -> Bool {
-        guard let _ = Double(tipPercentageTextField.text!) else { return false }
+        guard let _ = Double(billAmountTextField.text!) else { return false }
         return true
     }
 
@@ -59,7 +59,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else { return }
 
         let keyboardFrame = keyboardFrameValue.cgRectValue
-        let keyboardHeight = keyboardFrame.size.height
+        let keyboardHeight = keyboardFrame.height
+//        let keyboardHeight = keyboardFrame.size.height
         print("keyboardHeight: \(keyboardHeight)")
 
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
