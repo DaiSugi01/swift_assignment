@@ -13,7 +13,6 @@
 		0AAEFC1725A67B570059FFCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AAEFC1525A67B570059FFCC /* Main.storyboard */; };
 		0AAEFC1925A67B5A0059FFCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AAEFC1825A67B5A0059FFCC /* Assets.xcassets */; };
 		0AAEFC1C25A67B5A0059FFCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AAEFC1A25A67B5A0059FFCC /* LaunchScreen.storyboard */; };
-		0AAEFC2625A6A8300059FFCC /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAEFC2525A6A8300059FFCC /* TempViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		0AAEFC1825A67B5A0059FFCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AAEFC1B25A67B5A0059FFCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AAEFC1D25A67B5A0059FFCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AAEFC2525A6A8300059FFCC /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +59,6 @@
 				0AAEFC0F25A67B570059FFCC /* AppDelegate.swift */,
 				0AAEFC1125A67B570059FFCC /* SceneDelegate.swift */,
 				0AAEFC1325A67B570059FFCC /* ViewController.swift */,
-				0AAEFC2525A6A8300059FFCC /* TempViewController.swift */,
 				0AAEFC1525A67B570059FFCC /* Main.storyboard */,
 				0AAEFC1825A67B5A0059FFCC /* Assets.xcassets */,
 				0AAEFC1A25A67B5A0059FFCC /* LaunchScreen.storyboard */,
@@ -140,7 +137,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AAEFC2625A6A8300059FFCC /* TempViewController.swift in Sources */,
 				0AAEFC1425A67B570059FFCC /* ViewController.swift in Sources */,
 				0AAEFC1025A67B570059FFCC /* AppDelegate.swift in Sources */,
 				0AAEFC1225A67B570059FFCC /* SceneDelegate.swift in Sources */,
