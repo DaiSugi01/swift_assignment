@@ -11,12 +11,12 @@ class TodoTableViewController: UITableViewController {
     
     let cellId = "todoCell"
 
-    let deleteBarButton: UIBarButtonItem = {
+    lazy var deleteBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed))
         return button
     }()
     
-    let addBarButton: UIBarButtonItem = {
+    lazy var addBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
         return button
     }()
@@ -47,7 +47,7 @@ class TodoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TodoTableViewCell
-        cell.todoName.text = todos[0].title
+        cell.todoNameLabel.text = todos[0].title
         cell.accessoryType = .disclosureIndicator
         return cell
     }

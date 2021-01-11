@@ -8,43 +8,22 @@
 import UIKit
 
 class TodoTableViewCell: UITableViewCell {
-
-    let checkMark: UILabel = {
-        let lb = UILabel()
-        lb.font = .systemFont(ofSize: 30)
-        lb.setContentHuggingPriority(.required, for: .horizontal)
-        return lb
-    }()
     
-    let todoName: UILabel = {
+    let todoNameLabel: UILabel = {
         let lb = UILabel()
         lb.font = .systemFont(ofSize: 20)
+        lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
-    }()
-    
-    let infoIcon: UIButton = {
-        let button = UIButton(type: .infoLight)
-        return button
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let hStackView = UIStackView()
-        hStackView.addArrangedSubview(checkMark)
-        hStackView.addArrangedSubview(todoName)
-        hStackView.addArrangedSubview(infoIcon)
 
-        hStackView.translatesAutoresizingMaskIntoConstraints = false
-        hStackView.axis = .horizontal
-        hStackView.distribution = .fill
-        hStackView.alignment = .fill
-        hStackView.spacing = 10
-        
-        contentView.addSubview(hStackView)
-        hStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        hStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
-        hStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-        hStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
+        contentView.addSubview(todoNameLabel)
+        todoNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
+        todoNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
+        todoNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        todoNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
     }
         
     required init?(coder: NSCoder) {

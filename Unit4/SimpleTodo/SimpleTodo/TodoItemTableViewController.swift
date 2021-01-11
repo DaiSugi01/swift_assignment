@@ -7,31 +7,32 @@
 
 import UIKit
 
-class TodoItemTableViewController: UITableViewController {
+class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDelegate {
+    
     let cellId = "todoItemCell"
     
-    let deleteBarButton: UIBarButtonItem = {
+    lazy var deleteBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed))
         return button
     }()
     
-    let addBarButton: UIBarButtonItem = {
+    lazy var addBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
         return button
     }()
     
     var todoItems: [[TodoItem]] = [
         [
-            TodoItem(title: "Study iOS", checkMark: "", todoDescription: "study swift", priorityNumber: 0, isCompletedIndicator: false),
-            TodoItem(title: "Study Design pattern", checkMark: "", todoDescription: "design pattern", priorityNumber: 0, isCompletedIndicator: false)
+            TodoItem(title: "Study iOS", checkMark: "", todoDescription: "study swift", priorityNumber: 0),
+            TodoItem(title: "Study Design pattern", checkMark: "", todoDescription: "design pattern", priorityNumber: 0)
         ],
         [
-            TodoItem(title: "Buy Hamburger", checkMark: "", todoDescription: "Buy to eat", priorityNumber: 1, isCompletedIndicator: false),
-            TodoItem(title: "Take a walk", checkMark: "", todoDescription: "Take a walk to park", priorityNumber: 1, isCompletedIndicator: false),
+            TodoItem(title: "Buy Hamburger", checkMark: "", todoDescription: "Buy to eat", priorityNumber: 1),
+            TodoItem(title: "Take a walk", checkMark: "", todoDescription: "Take a walk to park", priorityNumber: 1),
         ],
         [
-            TodoItem(title: "Cook lanch", checkMark: "", todoDescription: "Cook lanch", priorityNumber: 2, isCompletedIndicator: false),
-            TodoItem(title: "Cook diner", checkMark: "", todoDescription: "Cook dinner", priorityNumber: 2, isCompletedIndicator: false)
+            TodoItem(title: "Cook lanch", checkMark: "", todoDescription: "Cook lanch", priorityNumber: 2),
+            TodoItem(title: "Cook diner", checkMark: "", todoDescription: "Cook dinner", priorityNumber: 2 )
         ]
     ]
     
@@ -43,25 +44,46 @@ class TodoItemTableViewController: UITableViewController {
         tableView.register(TodoItemTableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.allowsMultipleSelectionDuringEditing = true
-        self.tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     func setupNavBar() {
         title = "Todo Items"
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [addBarButton, deleteBarButton, editButtonItem]
     }
-
+    
+    private func navigateToAddEditTVC() {
+        let addEditTVC = AddEditTodoItemTableViewController(style: .grouped)
+        addEditTVC.delegate = self
+        let addEditNC = UINavigationController(rootViewController: addEditTVC)
+        present(addEditNC, animated: true, completion: nil)
+    }
+    
+    func add(_ todo: TodoItem) {
+        todoItems[1].append(todo)
+        tableView.insertRows(at: [IndexPath(row: todoItems[1].count - 1, section: 1)], with: .automatic)
+    }
+    
+    func edit(_ todo: TodoItem) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            todoItems.remove(at: indexPath.row)
+            todoItems[indexPath.section].insert(todo, at: indexPath.row)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
     @objc func deletePressed() {
     }
     
     @objc func addPressed() {
+        print("run")
+        navigateToAddEditTVC()
     }
     
     // MARK: - Table view data source
 
-     override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionHeaders.count
     }
 
@@ -84,6 +106,12 @@ class TodoItemTableViewController: UITableViewController {
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        tableView.deselectRow(at: indexPath, animated: true)
 //    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        todoItems[indexPath.section].remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+      }
+    }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
@@ -93,21 +121,19 @@ class TodoItemTableViewController: UITableViewController {
         return 60
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            // delete item at indexPath
-        }
-
-        return [delete]
-    }
+//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+//            // delete item at indexPath
+//        }
+//
+//        return [delete]
+//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Before: \(todoItems[indexPath.section][indexPath.row])")
         updateCheckMark(with: indexPath)
 //        tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: false)
-        print("AFter: \(todoItems[indexPath.section][indexPath.row])")
     }
     
     func updateCheckMark(with indexPath: IndexPath) {

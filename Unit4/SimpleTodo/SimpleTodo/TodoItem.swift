@@ -12,5 +12,4 @@ struct TodoItem {
     var checkMark: String
     let todoDescription: String?
     let priorityNumber: Int
-    let isCompletedIndicator: Bool
 }
