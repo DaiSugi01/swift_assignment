@@ -2,14 +2,15 @@
 //  TodoTableViewController.swift
 //  SimpleTodo
 //
-//  Created by 杉原大貴 on 2021/01/07.
+//  Created by 杉原大貴 on 2021/01/09.
 //
 
 import UIKit
 
 class TodoTableViewController: UITableViewController {
-    let cellId = "todoCell"
     
+    let cellId = "todoCell"
+
     let deleteBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed))
         return button
@@ -19,62 +20,57 @@ class TodoTableViewController: UITableViewController {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
         return button
     }()
-    
-    let todos = [
-        Todo(title: "Buy Hamburger", todoDescription: "Buy to eat", priorityNumber: 1, isCompletedIndicator: false),
-        Todo(title: "Take a walk", todoDescription: "Take a walk to park", priorityNumber: 1, isCompletedIndicator: false),
-        Todo(title: "Study iOS", todoDescription: "study swift", priorityNumber: 0, isCompletedIndicator: false),
-        Todo(title: "Study Design pattern", todoDescription: "design pattern", priorityNumber: 2, isCompletedIndicator: false)
+
+    var todos: [Todo] = [
+        Todo(todoId: 0, title: "Study Swift"),
+        Todo(todoId: 1, title: "Shoping")
     ]
     
-    let sectionHeaders = ["Hight Priority", "Medium Priority", "Low Priority"]
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
-    }
-
-    func setupNavBar() {
-        title = "Todo Items"
+        title = "Todo Lists"
+        tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: cellId)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [addBarButton, deleteBarButton]
     }
 
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todos.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TodoTableViewCell
+        cell.todoName.text = todos[0].title
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todoItemVC = TodoItemTableViewController()
+        navigationController?.pushViewController(todoItemVC, animated: true)
+    }
+    
     @objc func deletePressed() {
     }
     
     @objc func addPressed() {
     }
-    
-    // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionHeaders.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionHeaders[section]
-    }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        switch todos[indexPath.row].priorityNumber {
-//        case 0:
-//            return sectionHeaders[0]
-//        case 1:
-//            return sectionHeaders[1]
-//        case 2:
-//            return sectionHeaders[2]
-//        default:
-//            fatalError("it's invalid number.")
-//        }
-//        return todos[indexPath.row].priorityNumber
-//    }
-    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

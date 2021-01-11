@@ -2,12 +2,12 @@
 //  TodoTableViewCell.swift
 //  SimpleTodo
 //
-//  Created by 杉原大貴 on 2021/01/10.
+//  Created by 杉原大貴 on 2021/01/07.
 //
 
 import UIKit
 
-class TodoTableViewCell: UITableViewCell {
+class TodoItemTableViewCell: UITableViewCell {
 
     let checkMark: UILabel = {
         let lb = UILabel()
@@ -51,6 +51,8 @@ class TodoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented.")
     }
 
+
+    
 //    override func setSelected(_ selected: Bool, animated: Bool) {
 //        super.setSelected(selected, animated: animated)
 //        self.accessoryType = selected ? .checkmark : .none
