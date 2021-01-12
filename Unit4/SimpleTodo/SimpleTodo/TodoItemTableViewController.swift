@@ -12,7 +12,7 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
     let cellId = "todoItemCell"
     
     lazy var deleteBarButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed))
+        let button = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed(_:)))
         return button
     }()
     
@@ -31,7 +31,7 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
             TodoItem(title: "Take a walk", checkMark: "", todoDescription: "Take a walk to park", priorityNumber: 1),
         ],
         [
-            TodoItem(title: "Cook lanch", checkMark: "", todoDescription: "Cook lanch", priorityNumber: 2),
+            TodoItem(title: "Cook lanch", checkMark: "", todoDescription: "Cook lunch", priorityNumber: 2),
             TodoItem(title: "Cook diner", checkMark: "", todoDescription: "Cook dinner", priorityNumber: 2 )
         ]
     ]
@@ -66,18 +66,23 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
     
     func edit(_ todo: TodoItem) {
         if let indexPath = tableView.indexPathForSelectedRow {
-            todoItems.remove(at: indexPath.row)
+            todoItems[indexPath.section].remove(at: indexPath.row)
             todoItems[indexPath.section].insert(todo, at: indexPath.row)
             tableView.reloadRows(at: [indexPath], with: .automatic)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
-    @objc func deletePressed() {
+    @objc func deletePressed(_ sender: UIBarButtonItem) {
+        guard let selectedRows = tableView.indexPathsForSelectedRows else { return }
+        
+        for indexPath in selectedRows.reversed() {
+            todoItems[indexPath.section].remove(at: indexPath.row)
+        }
+        tableView.reloadData()
     }
     
     @objc func addPressed() {
-        print("run")
         navigateToAddEditTVC()
     }
     
@@ -97,20 +102,20 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TodoItemTableViewCell
+        cell.update(with: todoItems[indexPath.section][indexPath.row])
         cell.todoName.text = todoItems[indexPath.section][indexPath.row].title
         cell.checkMark.text = todoItems[indexPath.section][indexPath.row].checkMark
         cell.accessoryType = .disclosureIndicator
+        cell.showsReorderControl = true
+
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-      if editingStyle == .delete {
-        todoItems[indexPath.section].remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-      }
+        if editingStyle == .delete {
+            todoItems[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+          }
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -121,19 +126,28 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
         return 60
     }
 
-//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-//            // delete item at indexPath
-//        }
-//
-//        return [delete]
-//    }
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.todoItems[indexPath.section].remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return [delete]
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        updateCheckMark(with: indexPath)
-//        tableView.reloadRows(at: [indexPath], with: .automatic)
-        tableView.reloadData()
-        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if !tableView.isEditing {
+            tableView.deselectRow(at: indexPath, animated: false)
+            updateCheckMark(with: indexPath)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        } else {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let removedTodo = todoItems[sourceIndexPath.section].remove(at: sourceIndexPath.row)
+        todoItems[destinationIndexPath.section].insert(removedTodo, at: destinationIndexPath.row)
     }
     
     func updateCheckMark(with indexPath: IndexPath) {
@@ -143,74 +157,4 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
             todoItems[indexPath.section][indexPath.row].checkMark = ""
         }
     }
-    
-    //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        switch todos[indexPath.row].priorityNumber {
-//        case 0:
-//            return sectionHeaders[0]
-//        case 1:
-//            return sectionHeaders[1]
-//        case 2:
-//            return sectionHeaders[2]
-//        default:
-//            fatalError("it's invalid number.")
-//        }
-//        return todos[indexPath.row].priorityNumber
-//    }
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

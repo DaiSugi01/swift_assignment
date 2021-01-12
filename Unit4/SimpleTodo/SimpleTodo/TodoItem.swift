@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct TodoItem {
+struct TodoItem: Equatable {
     let title: String
     var checkMark: String
     let todoDescription: String?
     let priorityNumber: Int
+    
+    static func ==(lhs: TodoItem, rhs: TodoItem) -> Bool {
+        return lhs.title == rhs.title &&
+            lhs.checkMark == rhs.checkMark &&
+            lhs.todoDescription == rhs.todoDescription &&
+            lhs.priorityNumber == rhs.priorityNumber
+    }
 }

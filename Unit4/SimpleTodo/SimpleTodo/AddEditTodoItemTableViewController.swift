@@ -67,7 +67,6 @@ class AddEditTodoItemTableViewController: UITableViewController {
     
     @objc func saveTodo() {
         let newTodo = TodoItem(title: nameCell.textField.text!, checkMark: "", todoDescription: descriptionCell.textField.text!, priorityNumber: 1)
-//        TodoItem(title: nameCell.textField.text!, checkMark: todoItem?.checkMark, todoDescription: descriptionCell.textField.text, priorityNumber: todoItem?.priorityNumber)
         if todoItem == nil {
           delegate?.add(newTodo)
         } else {

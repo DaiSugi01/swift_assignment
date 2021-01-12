@@ -9,14 +9,14 @@ import UIKit
 
 class TodoItemTableViewCell: UITableViewCell {
 
-    let checkMark: UILabel = {
+    var checkMark: UILabel = {
         let lb = UILabel()
         lb.font = .systemFont(ofSize: 30)
         lb.setContentHuggingPriority(.required, for: .horizontal)
         return lb
     }()
     
-    let todoName: UILabel = {
+    var todoName: UILabel = {
         let lb = UILabel()
         lb.font = .systemFont(ofSize: 20)
         return lb
@@ -26,7 +26,7 @@ class TodoItemTableViewCell: UITableViewCell {
         let button = UIButton(type: .infoLight)
         return button
     }()
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let hStackView = UIStackView()
@@ -51,8 +51,18 @@ class TodoItemTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented.")
     }
 
-
+    @objc func navigateTo(_ sender: UITableViewCell) {
+        let editTVC = AddEditTodoItemTableViewController()
+    }
     
+    func update(with todoItem: TodoItem) {
+        todoName.text = todoItem.title
+        if checkMark.text == "" {
+            checkMark.text = "✓"
+        } else {
+            checkMark.text = ""
+        }
+    }
 //    override func setSelected(_ selected: Bool, animated: Bool) {
 //        super.setSelected(selected, animated: animated)
 //        self.accessoryType = selected ? .checkmark : .none
