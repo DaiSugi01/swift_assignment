@@ -8,7 +8,7 @@
 import UIKit
 
 class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDelegate {
-    
+        
     let cellId = "todoItemCell"
     
     lazy var deleteBarButton: UIBarButtonItem = {
@@ -46,7 +46,7 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
         tableView.allowsMultipleSelectionDuringEditing = true
     }
 
-    func setupNavBar() {
+    private func setupNavBar() {
         title = "Todo Items"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItems = [addBarButton, deleteBarButton, editButtonItem]
@@ -70,6 +70,14 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
             todoItems[indexPath.section].insert(todo, at: indexPath.row)
             tableView.reloadRows(at: [indexPath], with: .automatic)
             tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    func updateCheckMark(with indexPath: IndexPath) {
+        if todoItems[indexPath.section][indexPath.row].checkMark == "" {
+            todoItems[indexPath.section][indexPath.row].checkMark = "✓"
+        } else {
+            todoItems[indexPath.section][indexPath.row].checkMark = ""
         }
     }
     
@@ -105,7 +113,7 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
         cell.update(with: todoItems[indexPath.section][indexPath.row])
         cell.todoName.text = todoItems[indexPath.section][indexPath.row].title
         cell.checkMark.text = todoItems[indexPath.section][indexPath.row].checkMark
-        cell.accessoryType = .disclosureIndicator
+        cell.accessoryType = .detailDisclosureButton
         cell.showsReorderControl = true
 
         return cell
@@ -150,11 +158,11 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
         todoItems[destinationIndexPath.section].insert(removedTodo, at: destinationIndexPath.row)
     }
     
-    func updateCheckMark(with indexPath: IndexPath) {
-        if todoItems[indexPath.section][indexPath.row].checkMark == "" {
-            todoItems[indexPath.section][indexPath.row].checkMark = "✓"
-        } else {
-            todoItems[indexPath.section][indexPath.row].checkMark = ""
-        }
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let addEditTVC = AddEditTodoItemTableViewController(style: .grouped)
+        addEditTVC.delegate = self
+        addEditTVC.todoItem = todoItems[indexPath.section][indexPath.row]
+        let addEditNC = UINavigationController(rootViewController: addEditTVC)
+        present(addEditNC, animated: true, completion: nil)
     }
 }

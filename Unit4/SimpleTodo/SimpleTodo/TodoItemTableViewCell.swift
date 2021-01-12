@@ -21,18 +21,12 @@ class TodoItemTableViewCell: UITableViewCell {
         lb.font = .systemFont(ofSize: 20)
         return lb
     }()
-    
-    let infoIcon: UIButton = {
-        let button = UIButton(type: .infoLight)
-        return button
-    }()
         
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let hStackView = UIStackView()
         hStackView.addArrangedSubview(checkMark)
         hStackView.addArrangedSubview(todoName)
-        hStackView.addArrangedSubview(infoIcon)
 
         hStackView.translatesAutoresizingMaskIntoConstraints = false
         hStackView.axis = .horizontal
@@ -51,10 +45,6 @@ class TodoItemTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented.")
     }
 
-    @objc func navigateTo(_ sender: UITableViewCell) {
-        let editTVC = AddEditTodoItemTableViewController()
-    }
-    
     func update(with todoItem: TodoItem) {
         todoName.text = todoItem.title
         if checkMark.text == "" {
@@ -63,8 +53,4 @@ class TodoItemTableViewCell: UITableViewCell {
             checkMark.text = ""
         }
     }
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        self.accessoryType = selected ? .checkmark : .none
-//    }
 }
