@@ -65,7 +65,9 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
     }
     
     func edit(_ todo: TodoItem) {
+
         if let indexPath = tableView.indexPathForSelectedRow {
+            print("Run")
             todoItems[indexPath.section].remove(at: indexPath.row)
             todoItems[indexPath.section].insert(todo, at: indexPath.row)
             tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -84,7 +86,8 @@ class TodoItemTableViewController: UITableViewController, AddEditTodoItemTVCDele
     @objc func deletePressed(_ sender: UIBarButtonItem) {
         guard let selectedRows = tableView.indexPathsForSelectedRows else { return }
         
-        for indexPath in selectedRows.reversed() {
+        let newSelectedRows = selectedRows.sorted { $0 < $1 }
+        for indexPath in newSelectedRows.reversed() {
             todoItems[indexPath.section].remove(at: indexPath.row)
         }
         tableView.reloadData()
