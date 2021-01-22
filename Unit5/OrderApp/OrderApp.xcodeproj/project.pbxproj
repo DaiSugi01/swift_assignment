@@ -20,6 +20,8 @@
 		0A961A1B25BB4D4F0090E9E8 /* ResponseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A961A1A25BB4D4F0090E9E8 /* ResponseModels.swift */; };
 		0A961A1E25BB4DF80090E9E8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A961A1D25BB4DF80090E9E8 /* Order.swift */; };
 		0A961A2125BB4E910090E9E8 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A961A2025BB4E910090E9E8 /* MenuController.swift */; };
+		0A961A3725BB6B440090E9E8 /* OrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A961A3625BB6B440090E9E8 /* OrderTableViewController.swift */; };
+		0A961A3A25BB6ECE0090E9E8 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A961A3925BB6ECE0090E9E8 /* OrderConfirmationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		0A961A1A25BB4D4F0090E9E8 /* ResponseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModels.swift; sourceTree = "<group>"; };
 		0A961A1D25BB4DF80090E9E8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		0A961A2025BB4E910090E9E8 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		0A961A3625BB6B440090E9E8 /* OrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewController.swift; sourceTree = "<group>"; };
+		0A961A3925BB6ECE0090E9E8 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 			children = (
 				0A10E4F525B27C2000A45C3E /* AppDelegate.swift */,
 				0A10E4F725B27C2000A45C3E /* SceneDelegate.swift */,
+				0A961A3625BB6B440090E9E8 /* OrderTableViewController.swift */,
+				0A961A3925BB6ECE0090E9E8 /* OrderConfirmationViewController.swift */,
 				0A10E4F925B27C2000A45C3E /* ViewController.swift */,
 				0A10E4FB25B27C2000A45C3E /* Main.storyboard */,
 				0A961A1725BB4CB20090E9E8 /* MenuItem.swift */,
@@ -166,7 +172,9 @@
 				0A961A1525BB4C160090E9E8 /* MenuItemDetailViewController.swift in Sources */,
 				0A10E4F625B27C2000A45C3E /* AppDelegate.swift in Sources */,
 				0A961A1225BB4B250090E9E8 /* MenuTableViewController.swift in Sources */,
+				0A961A3A25BB6ECE0090E9E8 /* OrderConfirmationViewController.swift in Sources */,
 				0A10E4F825B27C2000A45C3E /* SceneDelegate.swift in Sources */,
+				0A961A3725BB6B440090E9E8 /* OrderTableViewController.swift in Sources */,
 				0A961A0F25BB4ABC0090E9E8 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
