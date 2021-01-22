@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         imageStackView.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -2).isActive = true
         imageStackView.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -20).isActive = true
         imageStackView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20).isActive = true
-        imageStackView.heightAnchor.constraint(equalTo: topView.heightAnchor, multiplier: 0.3).isActive = true
+        imageStackView.heightAnchor.constraint(equalTo: topView.heightAnchor, multiplier: 1).isActive = true
         imageStackView.isHidden = true
 
         // set table view constraints
