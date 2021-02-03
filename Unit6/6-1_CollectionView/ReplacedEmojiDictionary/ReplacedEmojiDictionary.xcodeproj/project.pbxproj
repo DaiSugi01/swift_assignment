@@ -15,11 +15,11 @@
 		0ADBF32425CA1B7200BA1811 /* EmojiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF32325CA1B7200BA1811 /* EmojiCollectionViewController.swift */; };
 		0ADBF32725CA208D00BA1811 /* EmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF32625CA208D00BA1811 /* EmojiCollectionViewCell.swift */; };
 		0ADBF32A25CA29B000BA1811 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF32925CA29B000BA1811 /* Emoji.swift */; };
-		0ADBF33025CA2B6000BA1811 /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF32D25CA2B6000BA1811 /* HorizontalStackView.swift */; };
-		0ADBF33125CA2B6000BA1811 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF32E25CA2B6000BA1811 /* VerticalStackView.swift */; };
-		0ADBF33225CA2B6000BA1811 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF32F25CA2B6000BA1811 /* UIView+ConstraintLayout.swift */; };
 		0ADBF33525CA319B00BA1811 /* AddEditEmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF33425CA319B00BA1811 /* AddEditEmojiTableViewController.swift */; };
 		0ADBF33825CA31CA00BA1811 /* AddEditEmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF33725CA31CA00BA1811 /* AddEditEmojiTableViewCell.swift */; };
+		0ADBF35625CAA6F300BA1811 /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF35325CAA6F200BA1811 /* HorizontalStackView.swift */; };
+		0ADBF35725CAA6F300BA1811 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF35425CAA6F200BA1811 /* UIView+ConstraintLayout.swift */; };
+		0ADBF35825CAA6F300BA1811 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADBF35525CAA6F200BA1811 /* VerticalStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,11 +33,11 @@
 		0ADBF32325CA1B7200BA1811 /* EmojiCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewController.swift; sourceTree = "<group>"; };
 		0ADBF32625CA208D00BA1811 /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = "<group>"; };
 		0ADBF32925CA29B000BA1811 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		0ADBF32D25CA2B6000BA1811 /* HorizontalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HorizontalStackView.swift; path = ../../../EmojiDictionaryEmojiDictionary/EmojiDictionary/Utils/HorizontalStackView.swift; sourceTree = "<group>"; };
-		0ADBF32E25CA2B6000BA1811 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerticalStackView.swift; path = ../../../EmojiDictionaryEmojiDictionary/EmojiDictionary/Utils/VerticalStackView.swift; sourceTree = "<group>"; };
-		0ADBF32F25CA2B6000BA1811 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+ConstraintLayout.swift"; path = "../../../EmojiDictionaryEmojiDictionary/EmojiDictionary/Utils/UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
 		0ADBF33425CA319B00BA1811 /* AddEditEmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditEmojiTableViewController.swift; sourceTree = "<group>"; };
 		0ADBF33725CA31CA00BA1811 /* AddEditEmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddEditEmojiTableViewCell.swift; path = ReplacedEmojiDictionary/Views/AddEditEmojiTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		0ADBF35325CAA6F200BA1811 /* HorizontalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
+		0ADBF35425CAA6F200BA1811 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
+		0ADBF35525CAA6F200BA1811 /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +95,9 @@
 		0ADBF31D25CA1A6600BA1811 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				0ADBF32D25CA2B6000BA1811 /* HorizontalStackView.swift */,
-				0ADBF32F25CA2B6000BA1811 /* UIView+ConstraintLayout.swift */,
-				0ADBF32E25CA2B6000BA1811 /* VerticalStackView.swift */,
+				0ADBF35325CAA6F200BA1811 /* HorizontalStackView.swift */,
+				0ADBF35425CAA6F200BA1811 /* UIView+ConstraintLayout.swift */,
+				0ADBF35525CAA6F200BA1811 /* VerticalStackView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -201,13 +201,13 @@
 				0ADBF32A25CA29B000BA1811 /* Emoji.swift in Sources */,
 				0ADBF32425CA1B7200BA1811 /* EmojiCollectionViewController.swift in Sources */,
 				0ADBF32725CA208D00BA1811 /* EmojiCollectionViewCell.swift in Sources */,
-				0ADBF33025CA2B6000BA1811 /* HorizontalStackView.swift in Sources */,
 				0ADBF30825CA1A4C00BA1811 /* AppDelegate.swift in Sources */,
 				0ADBF30A25CA1A4C00BA1811 /* SceneDelegate.swift in Sources */,
 				0ADBF33825CA31CA00BA1811 /* AddEditEmojiTableViewCell.swift in Sources */,
+				0ADBF35725CAA6F300BA1811 /* UIView+ConstraintLayout.swift in Sources */,
 				0ADBF33525CA319B00BA1811 /* AddEditEmojiTableViewController.swift in Sources */,
-				0ADBF33125CA2B6000BA1811 /* VerticalStackView.swift in Sources */,
-				0ADBF33225CA2B6000BA1811 /* UIView+ConstraintLayout.swift in Sources */,
+				0ADBF35625CAA6F300BA1811 /* HorizontalStackView.swift in Sources */,
+				0ADBF35825CAA6F300BA1811 /* VerticalStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
