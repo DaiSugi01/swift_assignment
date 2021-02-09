@@ -4,7 +4,8 @@
 
 ## unnecesary directory
 /answers/*
-Unit6/assignment8/CollectionView/CollectionView/Models/API/MovieAPIKey.swifti
+Unit6/assignment8/CollectionView/CollectionView/Models/API/MovieAPIKey.swift
+
 ## User settings
 xcuserdata/
 
