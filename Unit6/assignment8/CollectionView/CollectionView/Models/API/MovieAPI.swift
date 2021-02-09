@@ -2,7 +2,7 @@
 //  MovieAPI.swift
 //  CollectionView
 //
-//  Created by 杉原大貴 on 2021/02/07.
+//  Created by 杉原大貴 on 2021/02/08.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ class MovieAPI {
     private var dataTask: URLSessionDataTask?
     private init() {}
     
-    private func fetcheMovie(completion: @escaping (Result<Movie, NetworkError>) -> Void) {
+    func fetcheMovie(completion: @escaping (Result<MovieFromDatabaseAPI, NetworkError>) -> Void) {
         var urlComponents = URLComponents(string: Endpoint.discoverMovieUrl)!
         urlComponents.queryItems = [
             Parameter.apikey: MovieAPIKey.apiKey,
@@ -20,10 +20,22 @@ class MovieAPI {
             Parameter.sortBy: "popularity.desc",
             Parameter.includeAdult: "false",
             Parameter.includeVideo: "true",
-            Parameter.page: "1000"
+            Parameter.page: "500"
         ].map { URLQueryItem(name: $0.key, value: $0.value) }
         
-        fetch(from: urlComponents.url!) { (result: Result<Movie, NetworkError>) in
+        fetch(from: urlComponents.url!) { (result: Result<MovieFromDatabaseAPI, NetworkError>) in
+            completion(result)
+        }
+    }
+    
+    func fetcheGenre(completion: @escaping (Result<GenreFromAPI, NetworkError>) -> Void) {
+        var urlComponents = URLComponents(string: Endpoint.genreUrl)!
+        urlComponents.queryItems = [
+            Parameter.apikey: MovieAPIKey.apiKey,
+            Parameter.language: "en-US"
+        ].map { URLQueryItem(name: $0.key, value: $0.value) }
+        
+        fetch(from: urlComponents.url!) { (result: Result<GenreFromAPI, NetworkError>) in
             completion(result)
         }
     }
@@ -59,6 +71,7 @@ class MovieAPI {
 
 struct Endpoint {
     static let discoverMovieUrl = "https://api.themoviedb.org/3/discover/movie"
+    static let genreUrl = "https://api.themoviedb.org/3/genre/movie/list"
 }
 
 struct Parameter {
