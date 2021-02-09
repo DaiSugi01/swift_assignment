@@ -9,7 +9,7 @@ import UIKit
 
 class MainCollectionViewController: UICollectionViewController, UISearchResultsUpdating {
     
-    // MARK: Section Definitions
+    // MARK: Section Definitions 
     enum SectionType: CaseIterable {
         case header
         case movieList
