@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A064B6825CD491600D16CA4 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A064B6725CD491600D16CA4 /* UIView+ConstraintLayout.swift */; };
-		0A064B6B25CD4A8500D16CA4 /* UIImage++URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A064B6A25CD4A8500D16CA4 /* UIImage++URL.swift */; };
+		0A064B6B25CD4A8500D16CA4 /* UIImage+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A064B6A25CD4A8500D16CA4 /* UIImage+URL.swift */; };
 		0A7C7BC325CCCBCC005DE5A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C7BC225CCCBCC005DE5A2 /* AppDelegate.swift */; };
 		0A7C7BC525CCCBCC005DE5A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C7BC425CCCBCC005DE5A2 /* SceneDelegate.swift */; };
 		0A7C7BCA25CCCBCC005DE5A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A7C7BC825CCCBCC005DE5A2 /* Main.storyboard */; };
@@ -26,11 +26,12 @@
 		0AAE17CF25D26FB600DF927E /* GenreFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17CE25D26FB600DF927E /* GenreFromAPI.swift */; };
 		0AAE17D625D26FE400DF927E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17D525D26FE400DF927E /* DetailViewController.swift */; };
 		0AAE17D925D2700000DF927E /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17D825D2700000DF927E /* UIColor+Hex.swift */; };
+		0AAE17DE25D2AFEE00DF927E /* UIView+AddBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17DD25D2AFEE00DF927E /* UIView+AddBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A064B6725CD491600D16CA4 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
-		0A064B6A25CD4A8500D16CA4 /* UIImage++URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage++URL.swift"; sourceTree = "<group>"; };
+		0A064B6A25CD4A8500D16CA4 /* UIImage+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+URL.swift"; sourceTree = "<group>"; };
 		0A7C7BBF25CCCBCC005DE5A2 /* CollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A7C7BC225CCCBCC005DE5A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A7C7BC425CCCBCC005DE5A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		0AAE17CE25D26FB600DF927E /* GenreFromAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreFromAPI.swift; sourceTree = "<group>"; };
 		0AAE17D525D26FE400DF927E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0AAE17D825D2700000DF927E /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		0AAE17DD25D2AFEE00DF927E /* UIView+AddBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddBorder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				0A064B6725CD491600D16CA4 /* UIView+ConstraintLayout.swift */,
-				0A064B6A25CD4A8500D16CA4 /* UIImage++URL.swift */,
+				0A064B6A25CD4A8500D16CA4 /* UIImage+URL.swift */,
 				0AAE17D825D2700000DF927E /* UIColor+Hex.swift */,
+				0AAE17DD25D2AFEE00DF927E /* UIView+AddBorder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -231,13 +234,14 @@
 				0AAE17C925D26F9000DF927E /* MovieAPI.swift in Sources */,
 				0AAE17C525D26F7B00DF927E /* MovieFromDatabaseAPI.swift in Sources */,
 				0AAE17CC25D26FA400DF927E /* MovieAPIKey.swift in Sources */,
-				0A064B6B25CD4A8500D16CA4 /* UIImage++URL.swift in Sources */,
+				0A064B6B25CD4A8500D16CA4 /* UIImage+URL.swift in Sources */,
 				0A7C7BC325CCCBCC005DE5A2 /* AppDelegate.swift in Sources */,
 				0AAE17D925D2700000DF927E /* UIColor+Hex.swift in Sources */,
 				0AAE17B525D26EFC00DF927E /* HeaderCollectionViewCell.swift in Sources */,
 				0A064B6825CD491600D16CA4 /* UIView+ConstraintLayout.swift in Sources */,
 				0AAE17BB25D26F3A00DF927E /* Movie.swift in Sources */,
 				0AAE17D625D26FE400DF927E /* DetailViewController.swift in Sources */,
+				0AAE17DE25D2AFEE00DF927E /* UIView+AddBorder.swift in Sources */,
 				0A7C7BC525CCCBCC005DE5A2 /* SceneDelegate.swift in Sources */,
 				0AAE17C125D26F5F00DF927E /* Genre.swift in Sources */,
 			);

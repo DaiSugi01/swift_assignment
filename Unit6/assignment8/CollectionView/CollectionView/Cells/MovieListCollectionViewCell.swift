@@ -9,8 +9,9 @@ import UIKit
 
 class MovieListCollectionViewCell: UICollectionViewCell {
     
-    static let reuseIdentifier = "movieReuseIdentifier"
-    
+    static let gridReuseIdentifier = "movieGridReuseIdentifier"
+    static let columnReuseIdentifier = "movieColumnReuseIdentifier"
+
     let wrapperSV: UIStackView = {
         let sv = UIStackView()
         sv.backgroundColor = .white
@@ -20,7 +21,6 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         sv.distribution = .fill
         sv.alignment = .fill
         sv.spacing = 0
-        sv.layer.cornerRadius = 10
         return sv
     }()
     
@@ -37,7 +37,8 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.numberOfLines = 2
-        lb.backgroundColor = UIColor(hex: "F9F8EB")
+        lb.backgroundColor = UIColor(hex: "1D4159")
+        lb.textColor = UIColor(hex: "DEE8EE")
         lb.text = "no title"
         lb.textAlignment = .center
         lb.lineBreakMode = .byWordWrapping
@@ -112,7 +113,15 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        setupView()
+        setupConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
         wrapperSV.addArrangedSubview(posterImage)
         wrapperSV.addArrangedSubview(titleLabel)
         wrapperSV.addArrangedSubview(buttomWrapperSV)
@@ -127,17 +136,21 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         buttomRightSV.addArrangedSubview(rateLabel)
 
         contentView.addSubview(wrapperSV)
-        wrapperSV.matchParent()
-        posterImage.heightAnchor.constraint(equalTo: wrapperSV.heightAnchor, multiplier: 0.7).isActive = true
-        posterImage.frame.size.width = wrapperSV.frame.width
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func setupConstraints() {
+        // wrapper stack view
+        wrapperSV.matchParent()
+        
+        // poster image
+        posterImage.heightAnchor.constraint(equalTo: wrapperSV.heightAnchor, multiplier: 0.7).isActive = true
+        posterImage.frame.size.width = wrapperSV.frame.width
+        
+        buttomWrapperSV.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
     func configureCell(with movie: Movie) {
-        if let imagePath = movie.imagePath {
+        if let imagePath = movie.posterImagePath {
             posterImage.image = (imagePath.isEmpty) ? UIImage(named: "noimage") : UIImage(url: imagePath)
         } else {
             posterImage.image = UIImage(named: "noimage")

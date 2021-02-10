@@ -18,7 +18,8 @@ struct Movie: Codable ,Equatable, Hashable, Comparable {
     let voteAverage: Double
     let releaseDate: String
     let genreIds: [Int]
-    let imagePath: String?
+    let posterImagePath: String?
+    let backdropPath: String?
     
     static func == (lhs: Movie, rhs: Movie) -> Bool {
         return

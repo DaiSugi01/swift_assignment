@@ -9,14 +9,16 @@ import UIKit
 
 extension UIImage {
     public convenience init(url: String) {
-        let url = URL(string: url)
+
+        self.init()
+        guard let url = URL(string: url) else { return }
+          
         do {
-            let data = try Data(contentsOf: url!)
+            let data = try Data(contentsOf: url)
             self.init(data: data)!
             return
         } catch let err {
             print("Error : \(err.localizedDescription)")
         }
-        self.init()
     }
 }

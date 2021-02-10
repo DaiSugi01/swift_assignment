@@ -16,6 +16,7 @@ struct MovieFromDatabaseAPI: Codable {
         let genreIds: [Int]
         let overview: String
         let posterPath: String?
+        let backdropPath: String?
         let releaseDate: String
         let video: Bool
         let voteCount: Int
@@ -27,6 +28,7 @@ struct MovieFromDatabaseAPI: Codable {
             case genreIds = "genre_ids"
             case overview = "overview"
             case posterPath = "poster_path"
+            case backdropPath = "backdrop_path"
             case releaseDate = "release_date"
             case video = "video"
             case voteCount = "vote_count"
