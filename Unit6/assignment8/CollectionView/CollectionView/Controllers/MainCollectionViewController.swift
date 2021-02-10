@@ -113,7 +113,7 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
         collectionView!.register(MovieListCollectionViewCell.self, forCellWithReuseIdentifier: MovieListCollectionViewCell.gridReuseIdentifier)
         collectionView!.register(MovieListCollectionViewCell.self, forCellWithReuseIdentifier: MovieListCollectionViewCell.columnReuseIdentifier)
 
-        // music list section layout
+        // movie list section layout
         self.layout[.grid] = self.generateMovieGridLayout()
         self.layout[.column] = self.generateColumnLayout()
 
