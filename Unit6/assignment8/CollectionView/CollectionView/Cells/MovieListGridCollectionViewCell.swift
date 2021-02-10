@@ -7,10 +7,9 @@
 
 import UIKit
 
-class MovieListCollectionViewCell: UICollectionViewCell {
+class MovieListGridCollectionViewCell: UICollectionViewCell {
     
-    static let gridReuseIdentifier = "movieGridReuseIdentifier"
-    static let columnReuseIdentifier = "movieColumnReuseIdentifier"
+    static let reuseIdentifier = "reuseIdentifier"
 
     let wrapperSV: UIStackView = {
         let sv = UIStackView()
@@ -39,7 +38,6 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         lb.numberOfLines = 2
         lb.backgroundColor = UIColor(hex: "1D4159")
         lb.textColor = UIColor(hex: "DEE8EE")
-        lb.text = "no title"
         lb.textAlignment = .center
         lb.lineBreakMode = .byWordWrapping
         lb.font = UIFont.systemFont(ofSize: 15)
@@ -105,7 +103,6 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     let rateLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
-        lb.text = "11"
         lb.textAlignment = .center
         lb.font = UIFont.systemFont(ofSize: 15)
         return lb
@@ -114,7 +111,6 @@ class MovieListCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -136,20 +132,24 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         buttomRightSV.addArrangedSubview(rateLabel)
 
         contentView.addSubview(wrapperSV)
+        
+        setupConstraints()
     }
     
     private func setupConstraints() {
         // wrapper stack view
         wrapperSV.matchParent()
         
+        NSLayoutConstraint.activate([
+            posterImage.heightAnchor.constraint(equalTo: wrapperSV.heightAnchor, multiplier: 0.7),
+            buttomWrapperSV.heightAnchor.constraint(equalToConstant: 40)
+        ])
+
         // poster image
-        posterImage.heightAnchor.constraint(equalTo: wrapperSV.heightAnchor, multiplier: 0.7).isActive = true
         posterImage.frame.size.width = wrapperSV.frame.width
-        
-        buttomWrapperSV.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
-    func configureCell(with movie: Movie) {
+    func configureGridCell(with movie: Movie) {
         if let imagePath = movie.posterImagePath {
             posterImage.image = (imagePath.isEmpty) ? UIImage(named: "noimage") : UIImage(url: imagePath)
         } else {
@@ -158,5 +158,17 @@ class MovieListCollectionViewCell: UICollectionViewCell {
         titleLabel.text = movie.title
         voteLabel.text = String(describing: movie.voteCount)
         rateLabel.text = String(describing: movie.voteAverage)
+    }
+    
+    func configureColumnCell(with movie: Movie) {
+        if let imagePath = movie.posterImagePath {
+            posterImage.image = (imagePath.isEmpty) ? UIImage(named: "noimage") : UIImage(url: imagePath)
+        } else {
+            posterImage.image = UIImage(named: "noimage")
+        }
+        titleLabel.text = movie.title
+        voteLabel.text = String(describing: movie.voteCount)
+        rateLabel.text = String(describing: movie.voteAverage)
+        posterImage.contentMode = .scaleAspectFill
     }
 }

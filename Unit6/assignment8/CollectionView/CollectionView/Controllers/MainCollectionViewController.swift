@@ -21,11 +21,6 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
     var sections = [SectionType]()
     
     // MARK: Music List Section Layout Definitions
-    enum Layout {
-        case grid
-        case column
-    }
-    
     var activeLayout: Layout = .grid {
         didSet {
             collectionView.setCollectionViewLayout(generateLayout(), animated: true) { (_) in
@@ -36,6 +31,10 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
                     self.layoutButton.image = UIImage(systemName: "square.grid.2x2")
                 }
             }
+            collectionView.contentOffset.y = 0
+            
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListGridCollectionViewCell.gridReuseIdentifier, for: indexPath) as! MovieListGridCollectionViewCell
+            
         }
     }
     
@@ -80,6 +79,7 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
     /// - Returns: nil
     private func setupNavBar() {
         title = "Discover Movies"
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor(hex: "101C28")
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor(hex: "DEE8EE")
@@ -110,8 +110,7 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
         
         // Register cells
         collectionView!.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: HeaderCollectionViewCell.reuseIdentifier)
-        collectionView!.register(MovieListCollectionViewCell.self, forCellWithReuseIdentifier: MovieListCollectionViewCell.gridReuseIdentifier)
-        collectionView!.register(MovieListCollectionViewCell.self, forCellWithReuseIdentifier: MovieListCollectionViewCell.columnReuseIdentifier)
+        collectionView!.register(MovieListGridCollectionViewCell.self, forCellWithReuseIdentifier: MovieListGridCollectionViewCell.reuseIdentifier)
 
         // movie list section layout
         self.layout[.grid] = self.generateMovieGridLayout()
@@ -203,7 +202,7 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1/3)
+                heightDimension: .absolute(300)
             ), subitem: item, count: 3)
         
         // section
@@ -245,6 +244,7 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
     /// - Parameters: nil
     /// - Returns: nil
     private func createDataSource() {
+        
         dataSource = UICollectionViewDiffableDataSource<SectionType, Item>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
             let sectionType = self.sections[indexPath.section]
             
@@ -254,8 +254,13 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
                 cell.configureCell(with: item.genre!)
                 return cell
             case .movieList:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCollectionViewCell.gridReuseIdentifier, for: indexPath) as! MovieListCollectionViewCell
-                cell.configureCell(with: item.movie!)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListGridCollectionViewCell.reuseIdentifier, for: indexPath) as! MovieListGridCollectionViewCell
+                switch self.activeLayout {
+                case .grid:
+                    cell.configureGridCell(with: item.movie!)
+                case .column:
+                    cell.configureColumnCell(with: item.movie!)
+                }
                 return cell
             }
         })
@@ -339,6 +344,13 @@ extension MainCollectionViewController {
         
         if selectedHeaderEle.count > 0 {
             let selectedGenres = Set(selectedRows.map { Item.categories[$0.row].genre!.genreId })
+            
+            if let searchStr = searchController.searchBar.text, !searchStr.isEmpty {
+                filteredMovies = Item.movies.filter { ($0.movie?.title.localizedCaseInsensitiveContains(searchStr))! }
+            } else {
+                filteredMovies = Item.movies
+            }
+
             filteredMovies = Item.movies.filter {
                 let genreIds = Set($0.movie!.genreIds)
                 return genreIds.filter { selectedGenres.contains($0) }.count > 0
@@ -348,4 +360,9 @@ extension MainCollectionViewController {
         }
         dataSource.apply(filteredItemSnapshot)
     }
+}
+
+enum Layout {
+    case grid
+    case column
 }
