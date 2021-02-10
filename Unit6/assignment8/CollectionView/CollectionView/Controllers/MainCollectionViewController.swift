@@ -21,6 +21,11 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
     var sections = [SectionType]()
     
     // MARK: Music List Section Layout Definitions
+    enum Layout {
+        case grid
+        case column
+    }
+
     var activeLayout: Layout = .grid {
         didSet {
             collectionView.setCollectionViewLayout(generateLayout(), animated: true) { (_) in
@@ -32,9 +37,6 @@ class MainCollectionViewController: UICollectionViewController, UISearchResultsU
                 }
             }
             collectionView.contentOffset.y = 0
-            
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListGridCollectionViewCell.gridReuseIdentifier, for: indexPath) as! MovieListGridCollectionViewCell
-            
         }
     }
     
@@ -360,9 +362,4 @@ extension MainCollectionViewController {
         }
         dataSource.apply(filteredItemSnapshot)
     }
-}
-
-enum Layout {
-    case grid
-    case column
 }

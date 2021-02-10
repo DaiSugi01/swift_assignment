@@ -14,5 +14,4 @@ struct Genre: Hashable, Comparable {
     static func < (lhs: Genre, rhs: Genre) -> Bool {
         return lhs.name < rhs.name
     }
-
 }

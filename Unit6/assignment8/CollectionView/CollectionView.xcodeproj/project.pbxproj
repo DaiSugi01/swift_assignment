@@ -26,7 +26,6 @@
 		0AAE17CF25D26FB600DF927E /* GenreFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17CE25D26FB600DF927E /* GenreFromAPI.swift */; };
 		0AAE17D625D26FE400DF927E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17D525D26FE400DF927E /* DetailViewController.swift */; };
 		0AAE17D925D2700000DF927E /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17D825D2700000DF927E /* UIColor+Hex.swift */; };
-		0AAE17DE25D2AFEE00DF927E /* UIView+AddBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE17DD25D2AFEE00DF927E /* UIView+AddBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +50,6 @@
 		0AAE17CE25D26FB600DF927E /* GenreFromAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreFromAPI.swift; sourceTree = "<group>"; };
 		0AAE17D525D26FE400DF927E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0AAE17D825D2700000DF927E /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		0AAE17DD25D2AFEE00DF927E /* UIView+AddBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddBorder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +69,6 @@
 				0A064B6725CD491600D16CA4 /* UIView+ConstraintLayout.swift */,
 				0A064B6A25CD4A8500D16CA4 /* UIImage+URL.swift */,
 				0AAE17D825D2700000DF927E /* UIColor+Hex.swift */,
-				0AAE17DD25D2AFEE00DF927E /* UIView+AddBorder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				0A064B6825CD491600D16CA4 /* UIView+ConstraintLayout.swift in Sources */,
 				0AAE17BB25D26F3A00DF927E /* Movie.swift in Sources */,
 				0AAE17D625D26FE400DF927E /* DetailViewController.swift in Sources */,
-				0AAE17DE25D2AFEE00DF927E /* UIView+AddBorder.swift in Sources */,
 				0A7C7BC525CCCBCC005DE5A2 /* SceneDelegate.swift in Sources */,
 				0AAE17C125D26F5F00DF927E /* Genre.swift in Sources */,
 			);
