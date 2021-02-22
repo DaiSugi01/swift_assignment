@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedPriority" representedClassName=".ManagedPriority" syncable="YES" codeGenerationType="category">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="priority" attributeType="String"/>
+        <relationship name="todoItem" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedTodoItem" inverseName="priority" inverseEntity="ManagedTodoItem"/>
+    </entity>
+    <entity name="ManagedTodoItem" representedClassName=".ManagedTodoItem" syncable="YES" codeGenerationType="category">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isDone" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="todoDescription" optional="YES" attributeType="String"/>
+        <relationship name="priority" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPriority" inverseName="todoItem" inverseEntity="ManagedPriority"/>
+    </entity>
+    <elements>
+        <element name="ManagedPriority" positionX="-63" positionY="18" width="128" height="88"/>
+        <element name="ManagedTodoItem" positionX="-274.8103637695312" positionY="35.4263916015625" width="128" height="118"/>
+    </elements>
+</model>
