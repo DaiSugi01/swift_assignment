@@ -10,11 +10,14 @@ import CoreData
 
 class TodoItemTableViewController: UITableViewController {
     
+    // MARK: - Section definition
     let sections = [
         TodoItem.Priority.PType.high,
         TodoItem.Priority.PType.middle,
         TodoItem.Priority.PType.low,
     ]
+
+    // MARK: - Table view data source
     var todoItems: [[ManagedTodoItem]] = [[], [], []]
     
     private var container: NSPersistentContainer? = AppDelegate.persistentContainer

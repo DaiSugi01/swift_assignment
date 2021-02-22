@@ -8,9 +8,7 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController {
-    
-    let cellId = "todoCell"
-    
+        
     lazy var deleteBarButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deletePressed))
         return button
@@ -29,7 +27,7 @@ class TodoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Todo Lists"
-        tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: TodoTableViewCell.reuseableCell)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [addBarButton, deleteBarButton]
@@ -46,7 +44,7 @@ class TodoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TodoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TodoTableViewCell.reuseableCell, for: indexPath) as! TodoTableViewCell
         cell.todoNameLabel.text = todos[indexPath.row].title
         cell.accessoryType = .disclosureIndicator
         return cell
